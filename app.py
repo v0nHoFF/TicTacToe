@@ -1,14 +1,16 @@
+import time
 import platform
 import os
 
 SYSTEM=platform.system()
 
-if SYSTEM == "Linux":
-    os.system("clear")
-elif SYSTEM == "Windows":
-    os.system("cls")
-elif SYSTEM == "Darwin":
-    os.system("clear")
+def clearScreen():
+	if SYSTEM == "Linux":
+    		os.system("clear")
+	elif SYSTEM == "Windows":
+    		os.system("cls")
+	elif SYSTEM == "Darwin":
+    		os.system("clear")
 
 defaultTable=[["00","01","02"],
                 ["10","11","12"],
@@ -24,7 +26,14 @@ playerO = "O"
 def printareTabla():
     ans = int(input("Insert the num for option:\n1.Play\n2.How to play\n\n\n"))
     if ans == 1:
-        start()
+        try:
+            start()
+        except KeyboardInterrupt:
+            print("\nbye bye!\n")
+            time.sleep(2)
+	    clearScreen()
+            exit(0)
+       # start()
     elif ans == 2:
         printDefault()
         print("\n1.Return\n2.Exit\n")
@@ -99,4 +108,5 @@ def checkTablaO():
         exit(0)
 
 if __name__ == "__main__":
+    clearScreen()
     printareTabla()
