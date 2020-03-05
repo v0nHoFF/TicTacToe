@@ -7,6 +7,8 @@ if SYSTEM == "Linux":
     os.system("clear")
 elif SYSTEM == "Windows":
     os.system("cls")
+elif SYSTEM == "Darwin":
+    os.system("clear")
 
 defaultTable=[["00","01","02"],
                 ["10","11","12"],
