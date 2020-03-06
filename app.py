@@ -12,7 +12,7 @@ def clearScreen():
 	elif SYSTEM == "Darwin":
     		os.system("clear")
 
-defaultTable=[["00","01","02"],
+defaultTable = [["00","01","02"],
                 ["10","11","12"],
                 ["20","21","22"],]
 
@@ -33,7 +33,6 @@ def printareTabla():
             time.sleep(1)
 	    clearScreen()
             exit(0)
-       # start()
     elif ans == 2:
         printDefault()
         print("\n1.Return\n2.Exit\n")
@@ -51,20 +50,6 @@ def printStart():
 def printDefault():
     for i in defaultTable:
         print(i)
-
-#def checkValue(row,column,player):
-#    rowType = type(row)
-#    columnType = type(column)
-#    print(rowType,columnType) * 3
-#    try:
-#        convertRow = int(row)
-#        convertColumn = int(column)
-#    except ValueError:
-#        print("wrong dataType")
-#        if player == "X":
-#            xTurn()
-#        elif player == "O":
-#            oTurn()
 
 def checkAvailability(linie,coloana,player):
     if not tabla[linie][coloana] == " ":
@@ -85,24 +70,86 @@ def miscareX(linie, coloana):
 def miscareO(linie, coloana):
     tabla[linie][coloana] = "O"
 
+def check(num,player):
+	if type(int(num)) != int:
+		print("insert a number please")
+		if player == "X":
+            		xTurn()
+        	elif player == "O":
+            		oTurn()
+
 def xTurn():
     global moves
-    print("X insert row ")
-    row = input()
-    print("X insert column")
-    column = input()
-#    checkValue(row,column,playerX)
+    q=1
+    while q:
+        try:
+	    print("X insert row")
+            row = input()
+	    q=0
+        except NameError:
+	    print("insert a row number X")
+            time.sleep(0.5)
+	    clearScreen()
+            printStart()
+	except SyntaxError:
+	    print("insert a row number X")
+	    time.sleep(0.5)
+	    clearScreen()
+	    printStart()
+    q=1
+    while q:
+        try:
+	    print("X insert column")
+            column = input()
+            q=0
+        except NameError:
+            print("insert a column number X")
+	    time.sleep(0.5)
+            clearScreen()
+            printStart()
+        except SyntaxError:
+            print("insert a column number X")
+	    time.sleep(0.5)
+            clearScreen()
+            printStart()
     checkAvailability(row, column,playerX)
     moves +=1
     checkTablaX()
 
 def oTurn():
     global moves
-    print("O insert row ")
-    row = input()
-    print("O insert column")
-    column = input()
-#    checkValue(row,column,playerO)
+    q=1
+    while q:
+        try:
+	    print("O insert row")
+            row = input()
+            q=0
+        except NameError:
+            print("insert a row number O")
+	    time.sleep(0.5)
+            clearScreen()
+            printStart()
+        except SyntaxError:
+            print("insert a row number O")
+            time.sleep(0.5)
+            clearScreen()
+            printStart()
+    q=1
+    while q:
+        try:
+	    print("O insert column")
+            column = input()
+            q=0
+        except NameError:
+            print("insert a column number O")
+            time.sleep(0.5)
+            clearScreen()
+            printStart()
+        except SyntaxError:
+            print("insert a column number O")
+            time.sleep(0.5)
+            clearScreen()
+            printStart()
     checkAvailability(row, column,playerO)
     moves += 1
     checkTablaO()
