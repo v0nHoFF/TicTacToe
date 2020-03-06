@@ -30,7 +30,7 @@ def printareTabla():
             start()
         except KeyboardInterrupt:
             print("\nbye bye!\n")
-            time.sleep(2)
+            time.sleep(1)
 	    clearScreen()
             exit(0)
        # start()
