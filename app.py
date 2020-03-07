@@ -24,7 +24,19 @@ playerX = "X"
 playerO = "O"
 moves = 0
 def printareTabla():
-    ans = int(input("Insert the num for option:\n1.Play\n2.How to play\n\n\n"))
+    while True:
+        try:
+            ans = int(input("Insert the num for option:\n1.Play\n2.How to play\n3.Exit\n\n"))
+            break
+        except KeyboardInterrupt:
+            print("\n\nok bye bye")
+            time.sleep(0.5)
+            clearScreen()
+            exit(0)
+        except:
+            print("Not a valid option")
+            clearScreen()
+            printareTabla()
     if ans == 1:
         try:
             start()
@@ -33,16 +45,41 @@ def printareTabla():
             time.sleep(1)
 	    clearScreen()
             exit(0)
+	except SyntaxError:
+	    print("insert a valid value")
+	    time.sleep(1)
+	    clearScreen()
+	    printareTabla()
     elif ans == 2:
         printDefault()
         print("\n1.Return\n2.Exit\n")
-        ret = int(input())
+        while True:
+            try:
+                ret = int(input())
+                break
+            except KeyboardInterrupt:
+                print("\n\nok bye bye")
+                time.sleep(0.5)
+                clearScreen()
+                exit(0)
+            except:
+                print("insert a valid number")
+                time.sleep(1)
+                clearScreen()
+                printareTabla()
         if ret == 1:
             print("ok lets start")
             start()
         elif ret == 2:
             print("See you soon!")
             exit(0)
+    elif ans == 3:
+        print("Bye bye!!")
+        time.sleep(0.39)
+        clearScreen()
+        exit(0)
+    else:
+        print("insert a valid value")
 
 def printStart():
     for j in tabla:
@@ -88,15 +125,19 @@ def xTurn():
 	    q=0
         except NameError:
 	    print("insert a row number X")
-            time.sleep(0.5)
+            time.sleep(1)
 	    clearScreen()
             printStart()
-	except SyntaxError:
-	    print("insert a row number X")
-	    time.sleep(0.5)
-	    clearScreen()
-	    printStart()
-    q=1
+        except SyntaxError:
+            print("insert a row number X")
+            time.sleep(1)
+            clearScreen()
+            printStart()
+        except KeyboardInterrupt:
+            print("\n\nok bye bye")
+            time.sleep(0.5)
+            clearScreen()
+            exit(0)
     while q:
         try:
 	    print("X insert column")
