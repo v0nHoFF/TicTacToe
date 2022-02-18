@@ -5,12 +5,12 @@ import os
 SYSTEM=platform.system()
 
 def clearScreen():
-	if SYSTEM == "Linux":
-    		os.system("clear")
-	elif SYSTEM == "Windows":
-    		os.system("cls")
-	elif SYSTEM == "Darwin":
-    		os.system("clear")
+    if SYSTEM == "Linux":
+        os.system("clear")
+    elif SYSTEM == "Windows":\
+        os.system("cls")
+    elif SYSTEM == "Darwin":\
+        os.system("clear")
 
 defaultTable = [["00","01","02"],
                 ["10","11","12"],
@@ -43,13 +43,13 @@ def printareTabla():
         except KeyboardInterrupt:
             print("\nbye bye!\n")
             time.sleep(1)
-	    clearScreen()
+            clearScreen()
             exit(0)
-	except SyntaxError:
-	    print("insert a valid value")
-	    time.sleep(1)
-	    clearScreen()
-	    printareTabla()
+        except SyntaxError:
+            print("insert a valid value")
+            time.sleep(1)
+            clearScreen()
+            printareTabla()
     elif ans == 2:
         printDefault()
         print("\n1.Return\n2.Exit\n")
@@ -89,7 +89,7 @@ def printDefault():
         print(i)
 
 def checkAvailability(linie,coloana,player):
-    if not tabla[linie][coloana] == " ":
+    if not tabla[int(linie)][int(coloana)] == " ":
         print("\nPosition already busy, select other position\n")
         if player == "X":
             xTurn()
@@ -102,31 +102,33 @@ def checkAvailability(linie,coloana,player):
             miscareO(linie,coloana)
 
 def miscareX(linie, coloana):
-    tabla[linie][coloana] = "X"
+    tabla[int(linie)][int(coloana)] = "X"
 
 def miscareO(linie, coloana):
-    tabla[linie][coloana] = "O"
+    tabla[int(linie)][int(coloana)] = "O"
 
 def check(num,player):
-	if type(int(num)) != int:
-		print("insert a number please")
-		if player == "X":
-            		xTurn()
-        	elif player == "O":
-            		oTurn()
+    if type(int(num)) != int:
+        print("insert a number please")
+        if player == "X":
+            xTurn()
+        elif player == "O":
+            oTurn()
 
 def xTurn():
     global moves
     q=1
+    row=0
+    column=0
     while q:
         try:
-	    print("X insert row")
+            print("X insert row")
             row = input()
-	    q=0
+            q=0
         except NameError:
-	    print("insert a row number X")
+            print("insert a row number X")
             time.sleep(1)
-	    clearScreen()
+            clearScreen()
             printStart()
         except SyntaxError:
             print("insert a row number X")
@@ -138,19 +140,20 @@ def xTurn():
             time.sleep(0.5)
             clearScreen()
             exit(0)
+    q=1
     while q:
         try:
-	    print("X insert column")
+            print("X insert column")
             column = input()
             q=0
         except NameError:
             print("insert a column number X")
-	    time.sleep(0.5)
+            time.sleep(0.5)
             clearScreen()
             printStart()
         except SyntaxError:
             print("insert a column number X")
-	    time.sleep(0.5)
+            time.sleep(0.5)
             clearScreen()
             printStart()
     checkAvailability(row, column,playerX)
@@ -160,14 +163,16 @@ def xTurn():
 def oTurn():
     global moves
     q=1
+    row=0
+    column=0
     while q:
         try:
-	    print("O insert row")
+            print("O insert row")
             row = input()
             q=0
         except NameError:
             print("insert a row number O")
-	    time.sleep(0.5)
+            time.sleep(0.5)
             clearScreen()
             printStart()
         except SyntaxError:
@@ -178,7 +183,7 @@ def oTurn():
     q=1
     while q:
         try:
-	    print("O insert column")
+            print("O insert column")
             column = input()
             q=0
         except NameError:
@@ -208,7 +213,7 @@ def checkTablaX():
     if tabla[0][0] == tabla[0][1] == tabla[0][2] == "X" or tabla[1][0] == tabla[1][1] == tabla[1][2] == "X" or tabla[2][0] == tabla[2][1] == tabla[2][2] == "X" or tabla[0][0] == tabla[1][0] == tabla[2][0] == "X" or tabla[0][1] == tabla[1][1] == tabla[2][1] == "X" or tabla[0][2] == tabla[1][2] == tabla[2][2] == "X" or tabla[0][0] == tabla[1][1] == tabla[2][2] == "X" or tabla[0][2] == tabla[1][1] == tabla[2][0] == "X":
         printStart()
         print("\033[1;32;40m X wins")
-	exit(0)
+        exit(0)
     elif moves == 9:
         printStart()
         print("\033[1;32;40m TIE")
